@@ -81,6 +81,7 @@ public:
     void act(Restaurant &restaurant);
     std::string toString() const;
 private:
+    std:: string bill;
 };
 
 
@@ -90,6 +91,7 @@ public:
     void act(Restaurant &restaurant);
     std::string toString() const;
 private:
+    std::string toPrint;
 };
 
 
