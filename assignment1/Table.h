@@ -1,7 +1,3 @@
-//
-// Created by alon on 04/11/18.
-//
-
 #ifndef TABLE_H_
 #define TABLE_H_
 
@@ -26,10 +22,11 @@ public:
     int getBill();
     bool isOpen();
 private:
+    Dish getDish(const std::vector <Dish> &menu, int d_id); //yot
     int capacity;
     bool open;
     std::vector<Customer*> customersList;
-    std::vector<OrderPair> orderList; //A list of pairs for each order in a table - (customer_id, Dish)
+    std::vector<OrderPair> orderList; //(customer_id, Dish) //A list of pairs for each order in a table
 };
 
 

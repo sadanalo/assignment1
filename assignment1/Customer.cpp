@@ -2,7 +2,7 @@
 // Created by alon on 04/11/18.
 //
 
-#include "costumer.h"
+#include "Customer.h"
 #include <limits>
 
 Customer::Customer(std::string c_name, int c_id):id(c_id) , name(c_name) {}
@@ -68,7 +68,6 @@ std::string VegetarianCustomer::toString() const {
 
 }
 //class cheap customer/////////////////////////////////////
-//order only once - NOT implemented here//
 CheapCustomer::CheapCustomer(std::string name, int id) : Customer(name, id) {
 
     }

@@ -2,7 +2,7 @@
 // Created by alon on 04/11/18.
 //
 
-#include "dish.h"
+#include "Dish.h"
 
 Dish::Dish(int d_id, std::string d_name, int d_price, DishType d_type) {
 this->id=d_id;

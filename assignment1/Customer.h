@@ -7,8 +7,8 @@
 
 #include <vector>
 #include <string>
-#include "dish.h"
-#include "dish.h"
+#include "Dish.h"
+#include "Dish.h"
 
 class Customer{
 public:
@@ -58,7 +58,7 @@ private:
 
 class AlchoholicCustomer : public Customer {
 public:
-    AlchoholicCustomer(std::string name, int id)
+    AlchoholicCustomer(std::string name, int id);
     std::vector<int> order(const std::vector<Dish> &menu);
     std::string toString() const;
 private:

@@ -1,4 +1,4 @@
-#include "../include/Table.h"
+#include "Table.h"
 #include <iostream>
 
 Table::Table(int t_capacity) : capacity(t_capacity) {}
@@ -39,8 +39,13 @@ std::vector<OrderPair> &Table::getOrders() {
 
 void Table::order(const std::vector<Dish> &menu) {
     for (int i = 0; i < customersList.size(); ++i) {
-        customersList[i]->order(menu);
+        std:: vector <int> orders = customersList[i]->order(menu);
+        for (int j = 0; j < orders.size(); ++j) {
+            OrderPair p = std::make_pair(customersList[i]->getId(),getDish(menu,orders[j]));
+            orderList.push_back(p);
+        }
     }
+
 }
 
 void Table::openTable() {
@@ -61,4 +66,12 @@ int Table::getBill() {
 
 bool Table::isOpen() {
     return open;
+}
+
+Dish Table::getDish(const std::vector<Dish> &menu, int d_id) {
+    for( auto dish : menu){
+        if (dish.getId() == d_id)
+            return dish;
+    }
+    std:: cout <<"the dish is not in the menu"<< std::endl;
 }

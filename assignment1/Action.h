@@ -49,7 +49,7 @@ public:
     void act(Restaurant &restaurant);
     std::string toString() const;
 private:
-    const int tableId;
+    const int tableId; //yot
 };
 
 
@@ -71,7 +71,7 @@ public:
     void act(Restaurant &restaurant);
     std::string toString() const;
 private:
-    const int tableId;
+    const int tableId;//yot
 };
 
 
@@ -81,7 +81,7 @@ public:
     void act(Restaurant &restaurant);
     std::string toString() const;
 private:
-    std:: string bill;
+    std:: string bill;//yot
 };
 
 
@@ -91,7 +91,7 @@ public:
     void act(Restaurant &restaurant);
     std::string toString() const;
 private:
-    std::string toPrint;
+    std::string toPrint; //yot
 };
 
 
@@ -102,6 +102,7 @@ public:
     std::string toString() const;
 private:
     const int tableId;
+    std::string s;//yot
 };
 
 

@@ -1,7 +1,4 @@
-//
-// Created by alon on 04/11/18.
-//
-//costumer
+
 #ifndef RESTAURANT_H_
 #define RESTAURANT_H_
 
@@ -25,6 +22,9 @@ public:
 private:
     bool open;
     std::vector<Table*> tables;
+
+
+private:
     std::vector<Dish> menu;
     std::vector<BaseAction*> actionsLog;
 };

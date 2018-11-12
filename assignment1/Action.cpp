@@ -1,7 +1,7 @@
 
 
-#include "../include/Action.h"
-#include "../include/Table.h"
+#include "Action.h"
+#include "Table.h"
 
 BaseAction::BaseAction() {}
 
@@ -11,6 +11,7 @@ ActionStatus BaseAction::getStatus() const {
 
 void BaseAction::complete() {
     status = COMPLETED;
+    errorMsg = "";
 }
 
 void BaseAction::error(std::string errorMsg)  {
@@ -177,25 +178,40 @@ std::string PrintMenu::toString() const {
 PrintTableStatus::PrintTableStatus(int id) : tableId(id) {}
 
 void PrintTableStatus::act(Restaurant &restaurant) {
-    if(restaurant.getTable(tableId).getStatus() == false)
+    if(restaurant.getTable(tableId).getStatus() == false) {
         std::cout << "table " + std::to_string(tableId) + " is closed" << std::endl;
+    }
+
+
+    s = "Table status: open/n";
+    s += "Customers:\n";
+    for (int i = 0; i < restaurant.getTable(tableId).getCustomers().size(); ++i) {
+        s += std::to_string(i) + " " + restaurant.getTable(tableId).getCustomers[i].getName() + "/n";
+    }
+    s.append("Orders\n");
+    for (int j = 0; j < restaurant.getTable(tableId).getOrders().size(); ++j) {
+        s += restaurant.getTable(tableId).getOrders[i].second.getName() + " " + "NIS" + " " + std::to_string(restaurant.getTable(tableId).getOrders[i].first);
+    }
+    s.append("Current bill: " );
+    s.append(std::to_string(restaurant.getTable(tableId).getBill()));
+    s.append("NIS");
+    complete();
 
 }
 
 std::string PrintTableStatus::toString() const {
-    return std::__cxx11::string();
+    return getErrorMsg();
 }
 
-PrintActionsLog::PrintActionsLog() {
-
-}
+PrintActionsLog::PrintActionsLog() {}
 
 void PrintActionsLog::act(Restaurant &restaurant) {
-
+    restaurant.getActionsLog(); //?
 }
 
 std::string PrintActionsLog::toString() const {
-    return std::__cxx11::string();
+    std::string s;
+
 }
 
 BackupRestaurant::BackupRestaurant() {
