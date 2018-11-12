@@ -112,6 +112,7 @@ public:
     void act(Restaurant &restaurant);
     std::string toString() const;
 private:
+    std::string actionLog;
 };
 
 

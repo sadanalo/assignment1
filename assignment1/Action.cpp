@@ -3,6 +3,8 @@
 #include "Action.h"
 #include "Table.h"
 
+extern Restaurant* backup;
+
 BaseAction::BaseAction() {}
 
 ActionStatus BaseAction::getStatus() const {
@@ -206,34 +208,44 @@ std::string PrintTableStatus::toString() const {
 PrintActionsLog::PrintActionsLog() {}
 
 void PrintActionsLog::act(Restaurant &restaurant) {
-    restaurant.getActionsLog(); //?
+    actionLog = restaurant.getActionsLog(); //?
+    complete();
 }
 
 std::string PrintActionsLog::toString() const {
-    std::string s;
+    return actionLog;
 
 }
 
-BackupRestaurant::BackupRestaurant() {
+BackupRestaurant::BackupRestaurant() {}
 
-}
-
-void BackupRestaurant::act(Restaurant &restaurant) {
-
+void BackupRestaurant::act(Restaurant &restaurant) { //so i want to make setters for restaurant and set the menu and actionlog in backup?
+    backup->setActionsLog(restaurant.getActionsLog());
+    backup->setMenu(restaurant.getMenu());
+    backup->setStatus(restaurant.getStatus());
+    backup->setTables(restaurant.getTables());
+    complete();
 }
 
 std::string BackupRestaurant::toString() const {
-    return std::__cxx11::string();
+    return getErrorMsg();
 }
 
-RestoreResturant::RestoreResturant() {
-
-}
+RestoreResturant::RestoreResturant() {}
 
 void RestoreResturant::act(Restaurant &restaurant) {
+    if (backup == nullptr){
+        std:: cout<<"no backup available"<< std::endl;
+        return;
+    }
+    restaurant->setActionsLog(backup.getActionsLog());
+    restaurant->setMenu(backup.getMenu());
+    restaurant->setStatus(backup.getStatus());
+    restaurant->setTables(backup.getTables());
+    complete();
 
 }
 
 std::string RestoreResturant::toString() const {
-    return std::__cxx11::string();
+    return getErrorMsg();
 }

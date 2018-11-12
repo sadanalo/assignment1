@@ -18,6 +18,14 @@ public:
     Table* getTable(int ind);
     const std::vector<BaseAction*>& getActionsLog() const; // Return a reference to the history of actions
     std::vector<Dish>& getMenu();
+    bool getStatus();//yot
+    std::vector<Table*> getTables();//yot
+    void setMenu(std::vector<Dish> &menu);//yot
+    void setActionsLog(std::vector<BaseAction*> actionsLog);//yot
+    void setTables(std::vector<Table*> tables);//yot
+    void setStatus(bool open);//yot
+
+
 
 private:
     bool open;

@@ -4,12 +4,7 @@
 
 #include "Dish.h"
 
-Dish::Dish(int d_id, std::string d_name, int d_price, DishType d_type) {
-this->id=d_id;
-this->name=d_name;
-this->price=d_price;
-this->type=d_type;
-}
+Dish::Dish(int d_id, std::string d_name, int d_price, DishType d_type) : id(d_id), name(d_name), price(d_price), type(d_type) {}
 
 
 int Dish::getId() const {
