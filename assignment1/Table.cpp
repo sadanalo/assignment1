@@ -1,7 +1,59 @@
 #include "Table.h"
 #include <iostream>
+#include <unordered_set>
 
 Table::Table(int t_capacity) : capacity(t_capacity) {}
+
+void Table:: clear(){
+    open = false;
+    capacity = 0;
+    orderList.clear();
+    for (int i = 0; i < customersList.size(); ++i) {
+        delete customersList[i];
+    }
+}
+//destructor
+Table::~Table() {
+    for (int i = 0; i < customersList.size(); ++i) {
+        delete customersList[i];
+    }
+}
+//copy constructor
+Table::Table(const Table &other) {
+    if(this != &other) {
+        Table t(other.getCapacity());
+        t.customersList = other.customersList;
+        t.orderList = other.orderList;
+        t.open = other.open;
+    }
+}
+
+//move constructor
+Table::Table(Table &&other) : open(other.open), capacity(other.capacity), orderList(other.orderList), customersList(other.customersList) {
+    other.clear();
+}
+//copy assignment operator
+Table &Table::operator=(const Table &other) {
+    if(this != &other) {
+        clear();
+        customersList = other.customersList;
+        orderList = other.orderList;
+        capacity = other.capacity;
+        open = other.open;
+    }
+}
+//move assignment operator
+Table &Table::operator=(Table &&other) {
+    if(this != &other){
+        clear();
+        customersList = other.customersList;
+        orderList = other.orderList;
+        capacity = other.capacity;
+        open = other.open;
+        other.clear();
+    }
+}
+
 
 int Table::getCapacity() const {
     return capacity;
@@ -75,3 +127,8 @@ Dish Table::getDish(const std::vector<Dish> &menu, int d_id) {
     }
     std:: cout <<"the dish is not in the menu"<< std::endl;
 }
+
+
+
+
+

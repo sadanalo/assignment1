@@ -1,8 +1,6 @@
-//
-// Created by alon on 04/11/18.
-//
 
 #include "Restaurant.h"
+
 Restaurant::Restaurant():
         Restaurant::Restaurant() {
 

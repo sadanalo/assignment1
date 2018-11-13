@@ -21,11 +21,29 @@ public:
     void closeTable();
     int getBill();
     bool isOpen();
+
+    // Destructor
+    virtual ~Table();
+
+    // Copy Constructor
+    Table(const Table &other);
+
+    // Move Constructor
+    Table(Table &&other);
+
+    // Copy Assignment
+    Table& operator=(const Table &other);
+
+    // Move Assignment
+    Table& operator=(Table &&other);
+
+
 private:
     Dish getDish(const std::vector <Dish> &menu, int d_id); //yot
     int capacity;
     bool open;
     std::vector<Customer*> customersList;
+    void clear();
     std::vector<OrderPair> orderList; //(customer_id, Dish) //A list of pairs for each order in a table
 };
 

@@ -50,6 +50,7 @@ public:
     std::string toString() const;
 private:
     const int tableId; //yot
+    std::string ppl_orders; //yot
 };
 
 

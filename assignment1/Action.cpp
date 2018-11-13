@@ -1,3 +1,4 @@
+#include <utility>
 
 
 #include "Action.h"
@@ -5,7 +6,7 @@
 
 extern Restaurant* backup;
 
-BaseAction::BaseAction() {}
+BaseAction::BaseAction() : status(PENDING) {}
 
 ActionStatus BaseAction::getStatus() const {
     return status;
@@ -18,7 +19,7 @@ void BaseAction::complete() {
 
 void BaseAction::error(std::string errorMsg)  {
     status = ERROR;
-    this->errorMsg = errorMsg;
+    this->errorMsg = std::move(errorMsg);
 }
 
 std::string BaseAction::getErrorMsg() const {
@@ -27,10 +28,10 @@ std::string BaseAction::getErrorMsg() const {
 
 std::string OpenTable::toString() const {
     std::string ans;
-    for (int i = 0; i < customers.size(); ++i) {
-        ans = ans + customers[i]->toString();
+    for (auto customer : customers) {
+        ans += customer->toString();
     }
-    return ans;
+    return ans; //todo maybe we do need a string here like all the prints?
 }
 
 
@@ -50,7 +51,6 @@ OpenTable::OpenTable(int id, std::vector<Customer *> &customersList) : tableId(i
 Order::Order(int id) : tableId(id) {}
 
 void Order::act(Restaurant &restaurant) {
-    std::string ppl_orders;
     std::vector<OrderPair> orders = restaurant.getTable(tableid).getOrders();
     std::vector<Customer> customers = restaurant.getTable(tableid).getCustomers();
     for (int i = 0; i < orders.size(); ++i) {
@@ -66,8 +66,9 @@ void Order::act(Restaurant &restaurant) {
 
 std::string Order::toString() const {
     if (getStatus() == COMPLETED)
-        return "lalala action open";
+        return ppl_orders;
 }
+
 
 MoveCustomer::MoveCustomer(int src, int dst, int customerId) : srcTable(src), dstTable(dst), id(customerId) {}
 
@@ -165,6 +166,7 @@ std::string CloseAll::toString() const {
     return bill;
 }
 
+
 PrintMenu::PrintMenu() :toPrint("") {}
 
 void PrintMenu::act(Restaurant &restaurant) {
@@ -179,6 +181,7 @@ void PrintMenu::act(Restaurant &restaurant) {
 std::string PrintMenu::toString() const {
     return toPrint;
 }
+
 
 PrintTableStatus::PrintTableStatus(int id) : tableId(id) {}
 
