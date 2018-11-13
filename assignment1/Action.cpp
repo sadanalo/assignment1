@@ -54,7 +54,10 @@ void Order::act(Restaurant &restaurant) {
     std::vector<OrderPair> orders = restaurant.getTable(tableid).getOrders();
     std::vector<Customer> customers = restaurant.getTable(tableid).getCustomers();
     for (int i = 0; i < orders.size(); ++i) {
-        ppl_orders += customers[i].getName() + "ordered" + orders[i].second.getName() + "/n";
+        while (customers[i].getId() == orders[i].first){
+            ppl_orders += customers[i].getName() + "ordered ";
+            orders[i].second.getName() + "/n";
+        }
         customers[i].order(restaurant.getMenu());
     }
     std::cout << ppl_orders << std:: endl ;
