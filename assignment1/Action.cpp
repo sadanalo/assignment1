@@ -45,7 +45,7 @@ void OpenTable::act(Restaurant &restaurant) {
 }
 
 
-OpenTable::OpenTable(int id, std::vector<Customer *> &customersList) : tableId(id), customers(customersList) {}
+OpenTable::OpenTable(int id, std::vector<Customer *> &customersList) : tableId(id), customers(customersList), {}
 
 
 Order::Order(int id) : tableId(id) {}

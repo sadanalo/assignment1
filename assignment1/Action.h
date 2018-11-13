@@ -99,7 +99,7 @@ private:
 class PrintTableStatus : public BaseAction {
 public:
     PrintTableStatus(int id);
-    void act(Restaurant &restaurant);
+    void act(Restaurant &restaurant) override;
     std::string toString() const;
 private:
     const int tableId;

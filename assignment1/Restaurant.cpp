@@ -2,9 +2,6 @@
 #include "Restaurant.h"
 
 Restaurant::Restaurant():
-        Restaurant::Restaurant() {
-
-}
 
 Restaurant::Restaurant(const std::string &configFilePath) {
 
@@ -15,15 +12,15 @@ void Restaurant::start() {
 }
 
 int Restaurant::getNumOfTables() const {
-    return 0;
+    return static_cast<int>(tables.size());
 }
 
 Table *Restaurant::getTable(int ind) {
-    return nullptr;
+    return tables[ind];
 }
 
 const std::vector<BaseAction *> &Restaurant::getActionsLog() const {
-    return <#initializer#>;
+    return actionsLog;
 }
 
 
